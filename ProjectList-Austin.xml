@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<ArrayOfWoodProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WoodProject>
+    <Name>Wood Table</Name>
+    <Description>A Oak Wood Table.</Description>
+    <ProjectNumber>1</ProjectNumber>
+    <WoodProjectCost>
+      <MaterialCost>500</MaterialCost>
+      <LabourCost>600</LabourCost>
+      <FinishCost>75</FinishCost>
+      <DeliveryCost>0</DeliveryCost>
+    </WoodProjectCost>
+    <Comments>-Adding a comment</Comments>
+  </WoodProject>
+  <WoodProject>
+    <Name>Tool Cart</Name>
+    <Description>A Wooded ToolCart made of Maple, Walnot and pine</Description>
+    <ProjectNumber>2</ProjectNumber>
+    <WoodProjectCost>
+      <MaterialCost>600</MaterialCost>
+      <LabourCost>0</LabourCost>
+      <FinishCost>40</FinishCost>
+      <DeliveryCost>0</DeliveryCost>
+    </WoodProjectCost>
+  </WoodProject>
+  <WoodProject>
+    <Name>Anvil V3</Name>
+    <Description>Made an Anvil just to test the comment System for this App</Description>
+    <ProjectNumber>3</ProjectNumber>
+    <WoodProjectCost>
+      <MaterialCost>800</MaterialCost>
+      <LabourCost>1200</LabourCost>
+      <FinishCost>0</FinishCost>
+      <DeliveryCost>0</DeliveryCost>
+    </WoodProjectCost>
+    <Comments>-Testing my Comments
+
+-Wish me luck</Comments>
+  </WoodProject>
+  <WoodProject>
+    <Name>Oak Window</Name>
+    <Description>Replacement Window</Description>
+    <ProjectNumber>4</ProjectNumber>
+    <WoodProjectCost>
+      <MaterialCost>600</MaterialCost>
+      <LabourCost>0</LabourCost>
+      <FinishCost>0</FinishCost>
+      <DeliveryCost>0</DeliveryCost>
+    </WoodProjectCost>
+    <Comments>-For Nick</Comments>
+  </WoodProject>
+</ArrayOfWoodProject>
