@@ -13,7 +13,7 @@ using System.IO;
 
 namespace WoodWorkingForm
 {
-    public partial class ProjectListForm : Form
+    internal partial class ProjectListForm : Form
     {
 
         public List<WoodProject> _woodProjectsList;
@@ -51,12 +51,11 @@ namespace WoodWorkingForm
             txtDescription.Text = ((WoodProject)cboProjectList.SelectedItem).Description;
             txtProjectNumber.Text = ((WoodProject)cboProjectList.SelectedItem).ProjectNumber.ToString();
 
-            txtMaterialCost.Text = ((WoodProject)cboProjectList.SelectedItem).WoodProjectCost.MaterialCost.ToString();
-            txtLabourCost.Text = ((WoodProject)cboProjectList.SelectedItem).WoodProjectCost.LabourCost.ToString();
-            txtFinishCost.Text = ((WoodProject)cboProjectList.SelectedItem).WoodProjectCost.FinishCost.ToString();
-            txtDeliveryCost.Text = ((WoodProject)cboProjectList.SelectedItem).WoodProjectCost.DeliveryCost.ToString();
+            // Add DGV for Wood Item Costs
 
             txtComments.Text = ((WoodProject)cboProjectList.SelectedItem).Comments;
+
+            dgvProjectCost.DataSource = ((WoodProject)cboProjectList.SelectedItem).WoodItemCosts;
         }
 
         /// <summary>
@@ -72,13 +71,12 @@ namespace WoodWorkingForm
             _woodProjectsList[selectedIndex].Name = txtName.Text;       
             _woodProjectsList[selectedIndex].Description = txtDescription.Text;       
             _woodProjectsList[selectedIndex].ProjectNumber = int.Parse(txtProjectNumber.Text);
-            
-            _woodProjectsList[selectedIndex].WoodProjectCost.MaterialCost = int.Parse(txtMaterialCost.Text); 
-            _woodProjectsList[selectedIndex].WoodProjectCost.LabourCost = int.Parse(txtLabourCost.Text); 
-            _woodProjectsList[selectedIndex].WoodProjectCost.FinishCost = int.Parse(txtFinishCost.Text); 
-            _woodProjectsList[selectedIndex].WoodProjectCost.DeliveryCost = int.Parse(txtDeliveryCost.Text);
+
+            // Add DGV for Wood Item Costs
 
             _woodProjectsList[selectedIndex].Comments = txtComments.Text;
+            List<WoodItemCost> list = dgvProjectCost.DataSource as List<WoodItemCost>;
+            _woodProjectsList[selectedIndex].WoodItemCosts = list;
 
             source.CurrencyManager.Refresh();
         }
@@ -105,7 +103,7 @@ namespace WoodWorkingForm
             string path = saveFileDialog.FileName;
 
             //Fix this... Not a good way of saving to a xml format
-            using (Stream stream = new FileStream(path + ".xml", FileMode.Create, FileAccess.Write, FileShare.None))
+            using (Stream stream = new FileStream(path , FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<WoodProject>));
                 serializer.Serialize(stream, _woodProjectsList);

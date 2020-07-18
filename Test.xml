@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ArrayOfWoodProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WoodProject>
+    <Name>Anvil</Name>
+    <Description>-A handmade anvil made of railroad track</Description>
+    <ProjectNumber>1</ProjectNumber>
+    <WoodItemCosts>
+      <Cost Name="Rail Track" Description="-Salvaged from the barn" ItemCost="0" />
+      <Cost Name="Steel Plate" Description="-Dave Cop Steele" ItemCost="10" />
+    </WoodItemCosts>
+    <Comments>-Made for Myself for knife making</Comments>
+  </WoodProject>
+  <WoodProject>
+    <Name>Wood Tool Cart</Name>
+    <Description>-Handmade wood tool cart </Description>
+    <ProjectNumber>2</ProjectNumber>
+    <WoodItemCosts>
+      <Cost Name="Wood" Description="Free - Salvaged from mark Sector" ItemCost="0" />
+      <Cost Name="Tracks" Description="From Princess" ItemCost="40" />
+      <Cost Name="Plywood Sheet" Description="Sheet from Coop" ItemCost="60" />
+    </WoodItemCosts>
+    <Comments>-Made for all my prized tools</Comments>
+  </WoodProject>
+  <WoodProject>
+    <Name>Shed</Name>
+    <Description>A Bog ol Shed</Description>
+    <ProjectNumber>3</ProjectNumber>
+    <WoodItemCosts>
+      <Cost Name="Wood" Description="free" ItemCost="0" />
+      <Cost Name="Sheeting" Description="from Co-op" ItemCost="200" />
+      <Cost Name="Windows" Description="Free" ItemCost="0" />
+    </WoodItemCosts>
+    <Comments>-8' x 16'</Comments>
+  </WoodProject>
+</ArrayOfWoodProject>

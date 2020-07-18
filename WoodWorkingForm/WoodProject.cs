@@ -7,134 +7,83 @@ using System.Data;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using System.Collections;
 
 namespace WoodWorkingForm
 {
     [Serializable()]
+    [XmlRoot("WoodProject")]
     public class WoodProject : ISerializable
     {
         //Fields, Attributes or properties 
-        private string name;
-        private string description;
-        private int projectNumber;
-        private WoodProjectCost woodProjectCost;
-        private string comments;
+        
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int ProjectNumber { get; set; }
+
+        [XmlArray("WoodItemCosts")]
+        [XmlArrayItem("Cost")]
+        public List<WoodItemCost> WoodItemCosts { get; set; }
+        public string Comments { get; set; }
 
         public WoodProject()
         {
-
         }
 
-        public WoodProject(string name, string description, int projectNumber)
+        public WoodProject(string Name, string Description, int ProjectNumber)
         {
-            this.name = name;
-            this.description = description;
-            this.projectNumber = projectNumber;
+            this.Name = Name;
+            this.Description = Description;
+            this.ProjectNumber = ProjectNumber;
         }
 
-        public WoodProject(string name, string description, int projectNumber, WoodProjectCost woodProjectCost)
+        public WoodProject(string Name, string Description, int ProjectNumber, string Comments)
         {
-            this.name = name;
-            this.description = description;
-            this.projectNumber = projectNumber;
-            this.woodProjectCost = woodProjectCost;
+            this.Name = Name;
+            this.Description = Description;
+            this.ProjectNumber = ProjectNumber;
+            this.Comments = Comments;
         }
 
-        public WoodProject(string name, string description, int projectNumber, WoodProjectCost woodProjectCost, string comments)
+        public WoodProject(string Name, string Description, int ProjectNumber,List<WoodItemCost> WoodItemCosts, string Comments)
         {
-            this.name = name;
-            this.description = description;
-            this.projectNumber = projectNumber;
-            this.woodProjectCost = woodProjectCost;
-            this.comments = comments;
+            this.Name = Name;
+            this.Description = Description;
+            this.ProjectNumber = ProjectNumber;
+            this.WoodItemCosts = WoodItemCosts;
+            this.Comments = Comments;
         }
 
-        public string Name
+        public void AddWoodItemCost(WoodItemCost cost)
         {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                this.name = value;
-            }
+            this.WoodItemCosts.Add(cost);
         }
-
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                this.description = value;
-            }
-        }
-        
-        public int ProjectNumber
-        {
-            get
-            {
-                return projectNumber;
-            }
-            set
-            {
-                this.projectNumber = value;
-            }
-        }
-        
-        public WoodProjectCost WoodProjectCost
-        {
-            get
-            {
-                return woodProjectCost;
-            }
-            set
-            {
-                this.woodProjectCost = value;
-            }
-        }
-
-        public string Comments
-        {
-            get
-            {
-                return comments;
-            }
-            set
-            {
-                this.comments = value;
-            }
-        }
-
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Name",Name);
             info.AddValue("Description", Description);
             info.AddValue("ProjectNumber", ProjectNumber);
-            info.AddValue("WoodProjectCost", WoodProjectCost);
+            info.AddValue("WoodItemCosts", WoodItemCosts);
             info.AddValue("Comments", Comments);
         }
 
         public WoodProject(SerializationInfo info, StreamingContext context)
         {
-            name = (string)info.GetValue("Name", typeof(string));
-            description = (string)info.GetValue("Description", typeof(string));
-            projectNumber = (int)info.GetValue("ProjectNumber", typeof(int));
-            woodProjectCost = (WoodProjectCost)info.GetValue("WoodProjectCost", typeof(WoodProjectCost));
-            comments = (string)info.GetValue("Comments", typeof(string));
+            Name = (string)info.GetValue("Name", typeof(string));
+            Description = (string)info.GetValue("Description", typeof(string));
+            ProjectNumber = (int)info.GetValue("ProjectNumber", typeof(int));
+            WoodItemCosts = (List<WoodItemCost>)info.GetValue("WoodItemCosts", typeof(List<WoodItemCost>));
+            Comments = (string)info.GetValue("Comments", typeof(string));
         }
 
         public override string ToString()
         {
-            return name
-                +  description
-                +  projectNumber
-                +  woodProjectCost
-                +  comments
+            return Name
+                + Description
+                + ProjectNumber
+                + WoodItemCosts
+                + Comments
                 ;
         }
     }

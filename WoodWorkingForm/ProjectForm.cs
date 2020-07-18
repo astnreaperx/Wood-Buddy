@@ -16,7 +16,9 @@ namespace WoodWorkingForm
     public partial class ProjectForm : Form
     {
         public List<WoodProject> _woodProjectsList;
-        private BindingSource _bindProject;
+        public List<WoodItemCost> _woodItemCostsList;
+        public BindingSource _bindProject;
+        public BindingSource _bindCost;
 
         public ProjectForm()
         {
@@ -24,32 +26,23 @@ namespace WoodWorkingForm
 
             this.Name = "ProjectForm";
 
-            _woodProjectsList = new List<WoodProject>();
+            bindControls();
 
-            _woodProjectsList.Add(new WoodProject("WOOD", "PINE", 1, new WoodProjectCost(3, 6, 7, 8)));
+            _woodProjectsList = new List<WoodProject>();
+            _woodItemCostsList = new List<WoodItemCost>();
+
+            _bindProject = new BindingSource();
+            _bindProject.DataSource = _woodProjectsList;
+
+            _bindCost = new BindingSource();
+            _bindCost.DataSource = _woodItemCostsList;
         }
 
         private void ProjectForm_Load(object sender, EventArgs e)
         {
-            bindControls();
-        }
-
-        /// <summary>
-        /// Changing the wood cost causes a crazy error 
-        /// </summary>
-        public void bindControls()
-        {
-            _bindProject = new BindingSource();
-            _bindProject.DataSource = _woodProjectsList;
-
-            this.dgvProjects.DataSource = _bindProject;
-            this.dgvProjects.Columns[3].ReadOnly = true;
-            this.cboProjects.DataSource = _bindProject;
-
-            cboProjects.DisplayMember = "Name";
-            cboProjects.ValueMember = "ProjectNumber";
             
         }
+
         
         /// <summary>
         /// A click event for if the exit tool strip item is clicked
@@ -66,7 +59,7 @@ namespace WoodWorkingForm
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAdd_Click(object sender, EventArgs e)
+        public void btnAdd_Click(object sender, EventArgs e)
         {
             if (isValid())
             {
@@ -74,67 +67,26 @@ namespace WoodWorkingForm
                 string Name = txtName.Text;
                 string Description = txtDescription.Text;
                 int ProjectNumber = int.Parse(txtNumber.Text);
-
-                int materialCost = int.Parse(txtMaterialCost.Text);
-                int labourCost = int.Parse(txtLabourCost.Text);
-                int finishCost = int.Parse(txtFinishCost.Text);
-                int deliveryCost = int.Parse(txtDeliveryCost.Text);
-
                 string comments = txtComments.Text;
+                List<WoodItemCost> temp = new List<WoodItemCost>();
+                
+                WoodProject tempProject = new WoodProject(Name, Description, ProjectNumber, temp, comments);
 
-                _woodProjectsList.Add(new WoodProject(Name, Description, ProjectNumber, new WoodProjectCost(materialCost,labourCost,finishCost, deliveryCost), comments));
+                // Add each item from the Cost list into the Object List
+                foreach (var item in _woodItemCostsList)
+                {
+                    tempProject.AddWoodItemCost(item);
+                }
 
+                // Add the new project to the List
+                _woodProjectsList.Add(tempProject);
                 _bindProject.CurrencyManager.Refresh();
-                bindControls();
+                _bindCost.Clear();
                 clear();
+   
             }
-
         }
 
-        /// <summary>
-        /// Validates the name, desription and project number 
-        /// </summary>
-        /// <returns> A bool value base on if the information provided is valid or not</returns>
-        public bool isValid()
-        {
-            bool valid = true;
-            decimal result;
-
-            if (txtName.Text == string.Empty)
-            {
-                valid = false;
-                errorProvider.SetError(txtName,"Name is required!");
-            }
-
-            if(txtNumber.Text == string.Empty)
-            {
-                valid = false;
-                errorProvider.SetError(txtNumber, "Project Number is required!");
-            }
-
-            if(!Decimal.TryParse(txtNumber.Text, out result))
-            {
-                errorProvider.SetError(txtNumber, "A Project Number is required!");
-            }
-            if (!Decimal.TryParse(txtMaterialCost.Text, out result))
-            {
-                errorProvider.SetError(txtMaterialCost, "A Material Cost is required!");
-            }
-            if (!Decimal.TryParse(txtLabourCost.Text, out result))
-            {
-                errorProvider.SetError(txtLabourCost, "A Labour Cost is required!");
-            }
-            if (!Decimal.TryParse(txtFinishCost.Text, out result))
-            {
-                errorProvider.SetError(txtFinishCost, "A Finish Cost is required!");
-            }
-            if (!Decimal.TryParse(txtDeliveryCost.Text, out result))
-            {
-                errorProvider.SetError(txtDeliveryCost, "A Delivery Cost is required!");
-            }
-
-            return valid;
-        }
 
         /// <summary>
         /// 
@@ -154,10 +106,6 @@ namespace WoodWorkingForm
             txtName.Clear();
             txtDescription.Clear();
             txtNumber.Clear();
-            txtMaterialCost.Clear();
-            txtLabourCost.Clear();
-            txtFinishCost.Clear();
-            txtDeliveryCost.Clear();
             txtComments.Clear();
         } 
 
@@ -172,26 +120,6 @@ namespace WoodWorkingForm
         }
 
         /// <summary>
-        /// The save feature
-        /// </summary>
-        private void Serialize()
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.ShowDialog();
-            saveFileDialog.Filter = "XML-File | *.xml";
-
-            string path = saveFileDialog.FileName;
-
-            //Fix this... Not a good way of saving to a xml format
-            using (Stream stream = new FileStream(path + ".xml", FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<WoodProject>));
-                serializer.Serialize(stream, _woodProjectsList);
-                stream.Close();
-            }
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
@@ -201,29 +129,6 @@ namespace WoodWorkingForm
             Deserialize();
         }
 
-        /// <summary>
-        /// The Load feature  
-        /// </summary>
-        public void Deserialize()
-        {
-            OpenFileDialog fb = new OpenFileDialog();
-            fb.ShowDialog();
-
-            string path = fb.FileName;
-
-            using (FileStream fileStream = File.OpenRead(path))
-            {
-                XmlSerializer deserializer = new XmlSerializer(typeof(List<WoodProject>));
-                List<WoodProject> tempList = null;
-                tempList = (List<WoodProject>)deserializer.Deserialize(fileStream);
-                fileStream.Close();
-
-                _woodProjectsList = tempList;
-
-                bindControls();
-
-            }
-        }
         
         /// <summary>
         /// Clears out all of the data in the Data Grid View
@@ -232,13 +137,7 @@ namespace WoodWorkingForm
         /// <param name="e"></param>
         private void btnClearData_Click(object sender, EventArgs e)
         {
-            if (_woodProjectsList.Count > 0)
-            {
-                _woodProjectsList.Clear();
-                cboProjects.SelectedItem = null;
-                lblProjectNumberValue.Text = null;
-                bindControls();
-            }
+
 
         }
 
@@ -249,14 +148,17 @@ namespace WoodWorkingForm
         /// <param name="e"></param>
         private void btnClearSelected_Click(object sender, EventArgs e)
         {
-            _woodProjectsList.RemoveAt(dgvProjects.CurrentRow.Index);
-            bindControls();
+
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvProjects_SelectionChanged(object sender, EventArgs e)
         {
-            int currentIndex =  int.Parse(cboProjects.SelectedIndex.ToString()) + 1;
-            lblProjectNumberValue.Text = currentIndex.ToString();
+            this.dgvProjectsCost.DataSource = _woodProjectsList[dgvProjects.CurrentCell.RowIndex].WoodItemCosts;
         }
 
 
@@ -302,9 +204,146 @@ namespace WoodWorkingForm
             }
         }
 
-        private void aaaaaaaa(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClearExpense_Click(object sender, EventArgs e)
+        {
+            clearExpenses();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddExpense_Click(object sender, EventArgs e)
         {
 
+            AddExpense();
         }
+
+        //--------------------------------------------------------------
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void bindControls()
+        {
+            dgvProjects.DataSource = _bindProject;
+            dgvWoodItemCosts.DataSource = _bindCost;
+            cboProjects.DataSource = _bindProject;
+
+            cboProjects.DisplayMember = "Name";
+            cboProjects.ValueMember = "ProjectNumber";
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Serialize()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.ShowDialog();
+
+            string path = saveFileDialog.FileName;
+
+            using (Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<WoodProject>));
+                serializer.Serialize(stream, _woodProjectsList);
+                stream.Close();
+            }
+        }
+
+        /// <summary>
+        /// The Load feature  
+        /// </summary>
+        public void Deserialize()
+        {
+            OpenFileDialog fb = new OpenFileDialog();
+            fb.ShowDialog();
+
+            string path = fb.FileName;
+
+            using (FileStream fileStream = File.OpenRead(path))
+            {
+                XmlSerializer deserializer = new XmlSerializer(typeof(List<WoodProject>));
+                List<WoodProject> tempList = null;
+                tempList = (List<WoodProject>)deserializer.Deserialize(fileStream);
+                fileStream.Close();
+
+                _woodProjectsList = tempList;
+                _bindProject.DataSource = _woodProjectsList;
+
+                bindControls();
+
+            }
+        }
+
+
+        /// <summary>
+        /// Validates the name, desription and project number 
+        /// </summary>
+        /// <returns> A bool value base on if the information provided is valid or not</returns>
+        public bool isValid()
+        {
+            bool valid = true;
+            decimal result;
+
+            if (txtName.Text == string.Empty)
+            {
+                valid = false;
+                errorProvider.SetError(txtName, "Name is required!");
+            }
+
+            if (txtNumber.Text == string.Empty)
+            {
+                valid = false;
+                errorProvider.SetError(txtNumber, "Project Number is required!");
+            }
+
+            if (!Decimal.TryParse(txtNumber.Text, out result))
+            {
+                errorProvider.SetError(txtNumber, "A Project Number is required!");
+            }
+
+            return valid;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void clearExpenses()
+        {
+            txtExpenseName.Clear();
+            txtExpenseDescription.Clear();
+            txtExpenseCost.Clear();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void AddExpense()
+        {
+            string name = txtExpenseName.Text;
+            string description = txtExpenseDescription.Text;
+            int cost = int.Parse(txtExpenseCost.Text);
+
+            WoodItemCost tempItem = new WoodItemCost(name, description, cost);
+
+
+            _woodItemCostsList.Add(tempItem);
+
+            _bindCost.CurrencyManager.Refresh();
+            _bindProject.CurrencyManager.Refresh();
+            bindControls();
+            clearExpenses();
+        }
+
+
     }
 }

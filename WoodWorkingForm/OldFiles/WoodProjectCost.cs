@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
 
 
 namespace WoodWorkingForm 
@@ -14,9 +12,11 @@ namespace WoodWorkingForm
     public class WoodProjectCost : ISerializable
     {
         private int materialCost;
+        private List<WoodItemCost> _woodItemCostsList;
         private int labourCost;
         private int finishCost;
         private int deliveryCost;
+        
 
         public WoodProjectCost()
         {
@@ -31,6 +31,8 @@ namespace WoodWorkingForm
             this.finishCost = finishCost;
             this.deliveryCost = deliveryCost;
         }
+
+
 
         public int MaterialCost
         {
@@ -83,6 +85,7 @@ namespace WoodWorkingForm
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("MaterialCost", MaterialCost);
+            info.AddValue("WoodItemCostsList", _woodItemCostsList);
             info.AddValue("LabourCost", LabourCost);
             info.AddValue("FinishCost", FinishCost);
             info.AddValue("DeliveryCost", DeliveryCost);
@@ -91,6 +94,7 @@ namespace WoodWorkingForm
         public WoodProjectCost(SerializationInfo info, StreamingContext context)
         {
             MaterialCost = (int)info.GetValue("MaterialCost", typeof(int));
+            LabourCost = (int)info.GetValue("LabourCost", typeof(int));
             LabourCost = (int)info.GetValue("LabourCost", typeof(int));
             FinishCost = (int)info.GetValue("FinishCost", typeof(int));
             DeliveryCost = (int)info.GetValue("DeliveryCost", typeof(int));

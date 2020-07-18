@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ArrayOfWoodProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WoodProject>
+    <Name>234</Name>
+    <Description>234</Description>
+    <ProjectNumber>234</ProjectNumber>
+    <WoodItemCosts />
+    <Comments>234</Comments>
+  </WoodProject>
+  <WoodProject>
+    <Name>345</Name>
+    <Description>456</Description>
+    <ProjectNumber>567</ProjectNumber>
+    <WoodItemCosts />
+    <Comments>576</Comments>
+  </WoodProject>
+</ArrayOfWoodProject>

@@ -42,19 +42,13 @@
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.lblProjectNumber = new System.Windows.Forms.Label();
             this.txtProjectNumber = new System.Windows.Forms.TextBox();
-            this.txtMaterialCost = new System.Windows.Forms.TextBox();
-            this.lblMaterialCost = new System.Windows.Forms.Label();
-            this.lblLabourCost = new System.Windows.Forms.Label();
-            this.txtLabourCost = new System.Windows.Forms.TextBox();
-            this.lblFinsihCost = new System.Windows.Forms.Label();
-            this.txtFinishCost = new System.Windows.Forms.TextBox();
-            this.lblDeliveryCost = new System.Windows.Forms.Label();
-            this.txtDeliveryCost = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.txtComments = new System.Windows.Forms.TextBox();
+            this.dgvProjectCost = new System.Windows.Forms.DataGridView();
             this.mnuMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProjectCost)).BeginInit();
             this.SuspendLayout();
             // 
             // mnuMain
@@ -178,78 +172,6 @@
             this.txtProjectNumber.Size = new System.Drawing.Size(220, 20);
             this.txtProjectNumber.TabIndex = 7;
             // 
-            // txtMaterialCost
-            // 
-            this.txtMaterialCost.Location = new System.Drawing.Point(104, 269);
-            this.txtMaterialCost.Margin = new System.Windows.Forms.Padding(2);
-            this.txtMaterialCost.Name = "txtMaterialCost";
-            this.txtMaterialCost.Size = new System.Drawing.Size(121, 20);
-            this.txtMaterialCost.TabIndex = 9;
-            // 
-            // lblMaterialCost
-            // 
-            this.lblMaterialCost.AutoSize = true;
-            this.lblMaterialCost.Location = new System.Drawing.Point(29, 271);
-            this.lblMaterialCost.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblMaterialCost.Name = "lblMaterialCost";
-            this.lblMaterialCost.Size = new System.Drawing.Size(71, 13);
-            this.lblMaterialCost.TabIndex = 8;
-            this.lblMaterialCost.Text = "Material Cost:";
-            // 
-            // lblLabourCost
-            // 
-            this.lblLabourCost.AutoSize = true;
-            this.lblLabourCost.Location = new System.Drawing.Point(33, 294);
-            this.lblLabourCost.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblLabourCost.Name = "lblLabourCost";
-            this.lblLabourCost.Size = new System.Drawing.Size(67, 13);
-            this.lblLabourCost.TabIndex = 10;
-            this.lblLabourCost.Text = "Labour Cost:";
-            // 
-            // txtLabourCost
-            // 
-            this.txtLabourCost.Location = new System.Drawing.Point(104, 292);
-            this.txtLabourCost.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLabourCost.Name = "txtLabourCost";
-            this.txtLabourCost.Size = new System.Drawing.Size(121, 20);
-            this.txtLabourCost.TabIndex = 11;
-            // 
-            // lblFinsihCost
-            // 
-            this.lblFinsihCost.AutoSize = true;
-            this.lblFinsihCost.Location = new System.Drawing.Point(39, 317);
-            this.lblFinsihCost.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblFinsihCost.Name = "lblFinsihCost";
-            this.lblFinsihCost.Size = new System.Drawing.Size(61, 13);
-            this.lblFinsihCost.TabIndex = 12;
-            this.lblFinsihCost.Text = "Finish Cost:";
-            // 
-            // txtFinishCost
-            // 
-            this.txtFinishCost.Location = new System.Drawing.Point(104, 314);
-            this.txtFinishCost.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFinishCost.Name = "txtFinishCost";
-            this.txtFinishCost.Size = new System.Drawing.Size(121, 20);
-            this.txtFinishCost.TabIndex = 13;
-            // 
-            // lblDeliveryCost
-            // 
-            this.lblDeliveryCost.AutoSize = true;
-            this.lblDeliveryCost.Location = new System.Drawing.Point(28, 341);
-            this.lblDeliveryCost.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblDeliveryCost.Name = "lblDeliveryCost";
-            this.lblDeliveryCost.Size = new System.Drawing.Size(72, 13);
-            this.lblDeliveryCost.TabIndex = 14;
-            this.lblDeliveryCost.Text = "Delivery Cost:";
-            // 
-            // txtDeliveryCost
-            // 
-            this.txtDeliveryCost.Location = new System.Drawing.Point(104, 337);
-            this.txtDeliveryCost.Margin = new System.Windows.Forms.Padding(2);
-            this.txtDeliveryCost.Name = "txtDeliveryCost";
-            this.txtDeliveryCost.Size = new System.Drawing.Size(121, 20);
-            this.txtDeliveryCost.TabIndex = 15;
-            // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(117, 502);
@@ -291,23 +213,24 @@
             this.txtComments.Size = new System.Drawing.Size(296, 88);
             this.txtComments.TabIndex = 16;
             // 
+            // dgvProjectCost
+            // 
+            this.dgvProjectCost.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProjectCost.Location = new System.Drawing.Point(66, 266);
+            this.dgvProjectCost.Name = "dgvProjectCost";
+            this.dgvProjectCost.Size = new System.Drawing.Size(239, 103);
+            this.dgvProjectCost.TabIndex = 20;
+            // 
             // ProjectListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 557);
+            this.Controls.Add(this.dgvProjectCost);
             this.Controls.Add(this.txtComments);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.txtDeliveryCost);
-            this.Controls.Add(this.lblDeliveryCost);
-            this.Controls.Add(this.txtFinishCost);
-            this.Controls.Add(this.lblFinsihCost);
-            this.Controls.Add(this.txtLabourCost);
-            this.Controls.Add(this.lblLabourCost);
-            this.Controls.Add(this.lblMaterialCost);
-            this.Controls.Add(this.txtMaterialCost);
             this.Controls.Add(this.txtProjectNumber);
             this.Controls.Add(this.lblProjectNumber);
             this.Controls.Add(this.txtDescription);
@@ -322,6 +245,7 @@
             this.Text = "Edit Project List";
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProjectCost)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,14 +263,6 @@
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label lblProjectNumber;
         private System.Windows.Forms.TextBox txtProjectNumber;
-        private System.Windows.Forms.TextBox txtMaterialCost;
-        private System.Windows.Forms.Label lblMaterialCost;
-        private System.Windows.Forms.Label lblLabourCost;
-        private System.Windows.Forms.TextBox txtLabourCost;
-        private System.Windows.Forms.Label lblFinsihCost;
-        private System.Windows.Forms.TextBox txtFinishCost;
-        private System.Windows.Forms.Label lblDeliveryCost;
-        private System.Windows.Forms.TextBox txtDeliveryCost;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
@@ -355,5 +271,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsiExit;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.TextBox txtComments;
+        private System.Windows.Forms.DataGridView dgvProjectCost;
     }
 }
