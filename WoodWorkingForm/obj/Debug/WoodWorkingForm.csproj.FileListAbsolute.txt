@@ -27,3 +27,17 @@ C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C
 C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\WoodWorkingForm\WoodWorkingForm\obj\Debug\WoodWorkingForm.csproj.CopyComplete
 C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\WoodWorkingForm\WoodWorkingForm\obj\Debug\WoodWorkingForm.exe
 C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\WoodWorkingForm\WoodWorkingForm\obj\Debug\WoodWorkingForm.pdb
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\bin\Debug\WoodWorkingForm.exe.config
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\bin\Debug\WoodWorkingForm.exe
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\bin\Debug\WoodWorkingForm.pdb
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\bin\Debug\Newtonsoft.Json.dll
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\bin\Debug\Newtonsoft.Json.xml
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.csprojAssemblyReference.cache
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.ProjectListForm.resources
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.ProjectForm.resources
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.MainForm.resources
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.Properties.Resources.resources
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.csproj.GenerateResource.cache
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.csproj.CopyComplete
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.exe
+C:\Users\WillowMachine\Documents\@Documents\@Austin_Documnents\Personal\Coding\C#\Wood-Buddy\WoodWorkingForm\obj\Debug\WoodWorkingForm.pdb
